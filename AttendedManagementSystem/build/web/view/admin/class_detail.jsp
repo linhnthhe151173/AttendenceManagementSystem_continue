@@ -43,7 +43,7 @@
             <!-- Search form -->
             <form action="class_detail" method="POST">
                 <div style="display: flex;margin-top: 20px;">
-                    <input class="form-control" type="text" name="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control" type="text" name="search" placeholder="Search for class name" aria-label="Search">
                     <input type="submit" style="background-color: #EF7F1B;
                            border: none;" value="Search">
                 </div>

@@ -33,6 +33,15 @@ public class TeacherDetailController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String raw_search = request.getParameter("search");
+        boolean raw_gender = Boolean.parseBoolean(request.getParameter("gender"));
+        
+        if(raw_search == null){
+            raw_search = "";
+        }
+        ArrayList<Teacher> list_search = new TeacherDBContext().search(raw_search, raw_gender);
+        request.setAttribute("list_search", list_search);
+        request.getRequestDispatcher("../view/admin/teacher_detail.jsp").forward(request, response);
     }
 
     @Override

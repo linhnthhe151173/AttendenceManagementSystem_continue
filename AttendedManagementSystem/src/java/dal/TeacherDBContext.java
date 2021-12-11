@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Teacher;
@@ -128,7 +130,7 @@ public class TeacherDBContext extends DBContext {
                     + "      WHERE TeacherID = ?";
             stm = connection.prepareStatement(sql);
             stm.setInt(1, teacherID);
-           
+
             stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(TeacherDBContext.class.getName()).log(Level.SEVERE, null, ex);
@@ -161,4 +163,61 @@ public class TeacherDBContext extends DBContext {
         return null;
     }
 
+    public ArrayList<Teacher> search(String raw_search, boolean raw_gender) {
+        ArrayList<Teacher> teachers = new ArrayList<>();
+        try {
+            String sql = "select * from Teacher\n"
+                    + "where TeacherGender = ?";
+            HashMap<Integer, Object[]> parameters = new HashMap<>();
+            int indexParam = 1;
+            if (raw_search != null) {
+                sql += " and TeacherName like '%'+?+'%' ";
+                indexParam++;
+                Object[] params = new Object[2];
+                params[0] = String.class.getTypeName();
+                params[1] = raw_search;
+                parameters.put(indexParam, params);
+            }
+            stm = connection.prepareStatement(sql);
+            stm.setBoolean(1, raw_gender);
+
+            for (Map.Entry<Integer, Object[]> entry : parameters.entrySet()) {
+                Integer index = entry.getKey();
+                Object[] params = entry.getValue();
+                String type = params[0].toString();
+                if (type.equals(Boolean.class.getTypeName())) {
+                    stm.setBoolean(index, (Boolean) params[1]);
+                } else if (type.equals(String.class.getTypeName())) {
+                    stm.setString(index, params[1].toString());
+                }
+            }
+
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                Teacher t = Teacher.builder()
+                        .TeacherID(rs.getInt(1))
+                        .TeacherName(rs.getString(2))
+                        .TeacherImage(rs.getString(3))
+                        .TeacherGender(rs.getBoolean(4))
+                        .TeacherAddress(rs.getString(5))
+                        .TeacherEmail(rs.getString(6))
+                        .TeacherPhone(rs.getString(7))
+                        .TeacherDOB(rs.getDate(8)).build();
+
+                teachers.add(t);
+            }
+            return teachers;
+        } catch (SQLException ex) {
+            Logger.getLogger(TeacherDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public static void main(String[] args) {
+        ArrayList<Teacher> teachers = new ArrayList<>();
+        teachers = new TeacherDBContext().search("h", true);
+        for (Teacher teacher : teachers) {
+            System.out.println(teacher);
+        }
+    }
 }
