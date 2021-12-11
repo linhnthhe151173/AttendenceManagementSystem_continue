@@ -190,7 +190,7 @@ public class StudentDBContext extends DBContext {
             stm.setInt(9, s.getSemesterID().getSemesterID());
             stm.setString(10, s.getStudentID());
 
-            rs = stm.executeQuery();
+            stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(StudentDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -203,10 +203,46 @@ public class StudentDBContext extends DBContext {
 
             stm = connection.prepareStatement(sql);
             stm.setString(1, studentID);
-           
-            rs = stm.executeQuery();
+
+            stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(StudentDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public ArrayList<Student> search(String search_code) {
+        ArrayList<Student> students = new ArrayList<>();
+        try {
+            String sql = "select * from Student\n"
+                    + "where StudentID like '%'+?+'%'";
+
+            stm = connection.prepareStatement(sql);
+            stm.setString(1, search_code);
+            rs = stm.executeQuery();
+
+            while (rs.next()) {
+
+                Semester se = Semester.builder().SemesterID(rs.getInt(9)).build();
+                se = new SemesterDBContext().getOne(se);
+
+                Student s = Student.builder()
+                        .StudentID(rs.getString(1))
+                        .StudentName(rs.getString(2))
+                        .StudentImage(rs.getString(3))
+                        .StudentGender(rs.getBoolean(4))
+                        .StudentAddress(rs.getString(5))
+                        .StudentEmail(rs.getString(6))
+                        .StudentPhone(rs.getString(7))
+                        .StudentDOB(rs.getDate(8))
+                        .SemesterID(se)
+                        .build();
+
+                students.add(s);
+            }
+            return students;
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }

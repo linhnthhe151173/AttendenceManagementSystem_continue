@@ -31,6 +31,17 @@ public class StudentDetailController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String search_code = request.getParameter("search_code");
+        
+        if(search_code == null){
+            search_code = "";
+        }
+
+        ArrayList<Student> list_search = new ArrayList<>();
+        list_search = new StudentDBContext().search(search_code);
+        
+        request.setAttribute("list_search", list_search);
+        request.getRequestDispatcher("../view/admin/student_detail.jsp").forward(request, response);
     }
 
     @Override
