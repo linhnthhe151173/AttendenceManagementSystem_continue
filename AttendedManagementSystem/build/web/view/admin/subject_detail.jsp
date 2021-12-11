@@ -45,7 +45,7 @@
 
         <div class="container">
             <!-- Search form -->
-            <form action="subject/search" method="GET">
+            <form action="subject_detail" method="POST">
                 <div style="display: flex;margin-top: 20px;">
                     <input class="form-control" type="text" placeholder="Search for subject code" aria-label="Search" name="search">
                     <input type="submit" style="background-color: #EF7F1B;

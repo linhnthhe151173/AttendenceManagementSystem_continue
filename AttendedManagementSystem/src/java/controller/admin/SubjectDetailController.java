@@ -29,6 +29,14 @@ public class SubjectDetailController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String search = request.getParameter("search");
+        
+        if(search == null){
+            search = "";
+        }
+        ArrayList<Subject> subjects = new SubjectDBContext().searchBySubjectID(search);
+        request.setAttribute("subjects", subjects);
+        request.getRequestDispatcher("view/admin/subject_detail.jsp").forward(request, response);
     }
 
     @Override

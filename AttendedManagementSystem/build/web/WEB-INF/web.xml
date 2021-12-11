@@ -112,10 +112,6 @@
         <servlet-name>ProfileController</servlet-name>
         <servlet-class>controller.teacher.ProfileController</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>SearchSubjectController</servlet-name>
-        <servlet-class>controller.subject.SearchController</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>HomeTController</servlet-name>
         <url-pattern>/teacher/today_schedule</url-pattern>
@@ -227,10 +223,6 @@
     <servlet-mapping>
         <servlet-name>ProfileController</servlet-name>
         <url-pattern>/teacher/profile</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SearchSubjectController</servlet-name>
-        <url-pattern>/subject/search</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

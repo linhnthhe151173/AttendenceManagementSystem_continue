@@ -28,6 +28,13 @@ public class CDetailController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String search = request.getParameter("search");
+        if(search == null){
+            search = "";
+        }
+        ArrayList<model.Class> classS = new ClassDBContext().getClassByName(search);
+        request.setAttribute("classS", classS);
+        request.getRequestDispatcher("view/admin/class_detail.jsp").forward(request, response);
     }
 
     @Override

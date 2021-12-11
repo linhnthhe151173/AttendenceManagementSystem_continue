@@ -17,6 +17,7 @@
         <title>class_detail</title>
         <%
             ArrayList<model.Class> list_class = (ArrayList<model.Class>) request.getAttribute("list_class");
+            ArrayList<model.Class> classS = (ArrayList<model.Class>) request.getAttribute("classS");
         %>
     </head>
     <body>
@@ -40,15 +41,20 @@
 
         <div class="container">
             <!-- Search form -->
-            <div style="display: flex;margin-top: 20px;">
-                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-                <input type="submit" style="background-color: #EF7F1B;
-                       border: none;" value="Search">
-            </div>
+            <form action="class_detail" method="POST">
+                <div style="display: flex;margin-top: 20px;">
+                    <input class="form-control" type="text" name="search" placeholder="Search" aria-label="Search">
+                    <input type="submit" style="background-color: #EF7F1B;
+                           border: none;" value="Search">
+                </div>
+            </form>
             <h4 style="text-align: center;
                 margin-top: 20px;
                 font-weight: bold;
                 color: #EF7F1B;">CLASS DETAIL</h4>
+            <%
+                if (classS != null) {
+            %>
             <div style="margin-top: 20px;">
                 <table class="table table-bordered">
                     <thead>
@@ -61,13 +67,13 @@
                     </thead>
                     <tbody>
                         <%
-                            for (int i = 0; i < list_class.size(); i++) {                              
+                            for (int i = 0; i < classS.size(); i++) {
                         %>
                         <tr>
-                            <th scope="row"><%=i+1%></th>
-                            <td><%=list_class.get(i).getClassName()%></td>
-                            <td><a href="class/edit?classID=<%=list_class.get(i).getClassID()%>">Edit</a></td>
-                            <td><a href="class/remove?classID=<%=list_class.get(i).getClassID()%>">Remove</a></td>
+                            <th scope="row"><%=i + 1%></th>
+                            <td><%=classS.get(i).getClassName()%></td>
+                            <td><a href="class/edit?classID=<%=classS.get(i).getClassID()%>">Edit</a></td>
+                            <td><a href="class/remove?classID=<%=classS.get(i).getClassID()%>">Remove</a></td>
                         </tr>
                         <%
                             }
@@ -75,6 +81,38 @@
                     </tbody>
                 </table>
             </div>
+            <%
+            } else {
+            %>
+            <div style="margin-top: 20px;">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">STT</th>
+                            <th scope="col">Class Name</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%
+                            for (int j = 0; j < list_class.size(); j++) {
+                        %>
+                        <tr>
+                            <th scope="row"><%=j + 1%></th>
+                            <td><%=list_class.get(j).getClassName()%></td>
+                            <td><a href="class/edit?classID=<%=list_class.get(j).getClassID()%>">Edit</a></td>
+                            <td><a href="class/remove?classID=<%=list_class.get(j).getClassID()%>">Remove</a></td>
+                        </tr>
+                        <%
+                            }
+                        %>
+                    </tbody>
+                </table>
+            </div>
+            <%
+                }
+            %>
 
         </div>
     </body>

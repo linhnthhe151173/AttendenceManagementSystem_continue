@@ -3,11 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Linh/Desktop/AttendedManagementSystem/AttendedManagementSystem/src/java/dal/ScheduleDBContext.java</file>
-            <file>file:/C:/Users/Linh/Desktop/AttendedManagementSystem/AttendedManagementSystem/src/java/controller/authentication/LoginController.java</file>
-            <file>file:/C:/Users/Linh/Desktop/AttendedManagementSystem/AttendedManagementSystem/web/view/authentication/login.jsp</file>
-            <file>file:/C:/Users/Linh/Desktop/AttendedManagementSystem/AttendedManagementSystem/src/java/dal/TeacherDBContext.java</file>
-            <file>file:/C:/Users/Linh/Desktop/AttendedManagementSystem/AttendedManagementSystem/src/java/controller/teacher/HomeTController.java</file>
+            <file>file:/C:/Users/Linh/Desktop/AttendenceManagementSystem_continue/AttendedManagementSystem/src/java/controller/subject/SearchController.java</file>
+            <file>file:/C:/Users/Linh/Desktop/AttendenceManagementSystem_continue/AttendedManagementSystem/web/view/admin/subject_detail.jsp</file>
+            <file>file:/C:/Users/Linh/Desktop/AttendenceManagementSystem_continue/AttendedManagementSystem/src/java/dal/SubjectDBContext.java</file>
         </group>
     </open-files>
 </project-private>

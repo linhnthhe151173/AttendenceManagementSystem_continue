@@ -77,7 +77,7 @@ public class ClassDBContext extends DBContext {
 
     public static void main(String[] args) {
         ArrayList<Class> list = new ArrayList<>();
-        list = new ClassDBContext().getAll();
+        list = new ClassDBContext().getClassByName("1505");
         for (Class class1 : list) {
             System.out.println(class1);
         }
@@ -120,5 +120,26 @@ public class ClassDBContext extends DBContext {
         } catch (SQLException ex) {
             Logger.getLogger(SubjectDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public ArrayList<Class> getClassByName(String search) {
+        try {
+            ArrayList<Class> list = new ArrayList<>();
+            String sql = "select * from Class where ClassName like '%"+search+"%'";
+            stm = connection.prepareStatement(sql);
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                Class c = Class.builder()
+                        .ClassID(rs.getInt(1))
+                        .ClassName(rs.getString(2))
+                        .build();
+
+                list.add(c);
+            }
+            return list;
+        } catch (SQLException ex) {
+            Logger.getLogger(SubjectDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }
