@@ -141,4 +141,40 @@ public class SubjectDBContext extends DBContext {
         }
     }
 
+    public ArrayList<Subject> searchBySubjectID(String search) {
+        try {
+            ArrayList<Subject> list = new ArrayList<>();
+            String sql = "select * from Subject\n"
+                    + "where SubjectCode like '%"+search+"%'";
+            stm = connection.prepareStatement(sql);
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                Semester se = Semester.builder()
+                        .SemesterID(rs.getInt(4)).build();
+                se = new SemesterDBContext().getOne(se);
+
+                Subject s = Subject.builder()
+                        .SubjectID(rs.getInt(1))
+                        .SubjectCode(rs.getString(2))
+                        .TotalSlot(rs.getInt(3))
+                        .SemesterID(se)
+                        .SubjectName(rs.getString(5))
+                        .build();
+
+                list.add(s);
+            }
+            return list;
+        } catch (SQLException ex) {
+            Logger.getLogger(SubjectDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public static void main(String[] args) {
+        ArrayList<Subject> list = new ArrayList<>();
+        list = new SubjectDBContext().searchBySubjectID("p");
+        for (Subject subject : list) {
+            System.out.println(subject);
+        }
+    }
 }

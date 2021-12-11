@@ -4,6 +4,8 @@
     Author     : Linh
 --%>
 
+<%@page import="model.Subject"%>
+<%@page import="model.Subject"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Account"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -19,6 +21,7 @@
         <title>subject_detail</title>
         <%
             ArrayList<Account> list_class = (ArrayList<Account>) request.getAttribute("list_account");
+            ArrayList<Subject> subjects = (ArrayList<Subject>) request.getAttribute("subjects");
         %>
     </head>
     <body>
@@ -31,10 +34,10 @@
             <div id="navb" class="navbar-collapse collapse hide">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="home_admin.jsp" style="color: white;"><span class="fas fa-user">Welcome: </span>${sessionScope.account.getDisplayName()}</a>
+                        <a class="nav-link" href="" style="color: white;"><span class="fas fa-user">Welcome: </span>${sessionScope.account.getDisplayName()}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" style="color: white;"><span class="fas fa-sign-in-alt"></span>| Logout</a>
+                        <a class="nav-link" href="" style="color: white;"><span class="fas fa-sign-in-alt"></span>| Logout</a>
                     </li>
                 </ul>
             </div>
@@ -42,18 +45,61 @@
 
         <div class="container">
             <!-- Search form -->
-            <div style="display: flex;margin-top: 20px;">
-                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-                <input type="submit" style="background-color: #EF7F1B;
-                       border: none;" value="Search">
-            </div>
-            <p>${mess}</p>
+            <form action="subject/search" method="GET">
+                <div style="display: flex;margin-top: 20px;">
+                    <input class="form-control" type="text" placeholder="Search for subject code" aria-label="Search" name="search">
+                    <input type="submit" style="background-color: #EF7F1B;
+                           border: none;" value="Search">
+                </div>
+            </form>
+
             <h4 style="text-align: center;
                 margin-top: 20px;
                 font-weight: bold;
                 color: #EF7F1B;">SUBJECT DETAIL</h4>
+            <%
+                if (subjects != null) {
+            %>
             <div style="margin-top: 20px;">
-                
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">STT</th>
+                            <th scope="col">Subject Code</th>
+                            <th scope="col">Subject Name</th>
+                            <th scope="col">Total Slot</th>
+                            <th scope="col">Semester</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%
+                            for (int i = 0; i < subjects.size(); i++) {
+                                    %>
+                                    <tr>
+                                <th scope="row"><%=i+1%></th>
+                                <td><%=subjects.get(i).getSubjectCode() %></td>
+                                <td><%=subjects.get(i).getSubjectName()%></td>
+                                <td><%=subjects.get(i).getTotalSlot()%></td>
+                                <td><%=subjects.get(i).getSemesterID().getSemesterName() %></td>
+                                <td><a href="subject/edit?subjectID=<%=subjects.get(i).getSubjectID()%>">Edit</a></td>
+                                <td><a href="subject/remove?subjectID=<%=subjects.get(i).getSubjectID()%>">Remove</a></td>
+                            </tr>
+                                    <%
+                                }
+                        %>
+                        
+                    </tbody>
+                </table>
+
+            </div>
+            <%
+            } else {
+            %>
+            <div style="margin-top: 20px;">
+
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -80,9 +126,11 @@
                         </c:forEach>
                     </tbody>
                 </table>
-                
-            </div>
 
+            </div>
+            <%
+                }
+            %>
         </div>
     </body>
 </html>
