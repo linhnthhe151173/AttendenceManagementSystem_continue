@@ -188,4 +188,20 @@ public class AttendenceDBContext extends DBContext {
             Logger.getLogger(AttendenceDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public int countAttendence() {
+        int total_schedule = 0;
+        try {
+            String sql = "select count(*)\n"
+                    + "from Attendence";
+            stm = connection.prepareStatement(sql);
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                total_schedule = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SubjectDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return total_schedule;
+    }
 }

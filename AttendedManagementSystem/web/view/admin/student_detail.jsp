@@ -34,7 +34,7 @@
                         <a class="nav-link" href="" style="color: white;"><span class="fas fa-user">Welcome: </span>${sessionScope.account.getDisplayName()}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="" style="color: white;"><span class="fas fa-sign-in-alt"></span>| Logout</a>
+                        <a class="nav-link" href="../logout" style="color: white;"><span class="fas fa-sign-in-alt"></span>| Logout</a>
                     </li>
                 </ul>
             </div>

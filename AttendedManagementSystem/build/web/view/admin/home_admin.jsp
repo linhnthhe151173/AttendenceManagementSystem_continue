@@ -18,17 +18,17 @@
     <body>
         <!-- header -->
         <nav class="navbar navbar-expand-md sticky-top" style="background-color: #EF7F1B;">
-            <a class="navbar-brand" href="#" style="color: white;">Attendence Management</a>
+            <a class="navbar-brand" href="home" style="color: white;">Attendence Management</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb" aria-expanded="true">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div id="navb" class="navbar-collapse collapse hide">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="home_admin.jsp" style="color: white;"><span class="fas fa-user">Welcome: </span>${sessionScope.account.getDisplayName()}</a>
+                        <a class="nav-link" href="" style="color: white;"><span class="fas fa-user">Welcome: </span>${sessionScope.account.getDisplayName()}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" style="color: white;"><span class="fas fa-sign-in-alt"></span>| Logout</a>
+                        <a class="nav-link" href="logout" style="color: white;"><span class="fas fa-sign-in-alt"></span>| Logout</a>
                     </li>
                 </ul>
             </div>
@@ -115,7 +115,7 @@
                                 <div class="mr-5">Total Teacher</div>
                             </div>
                             <a class="card-footer text-white clearfix small z-1" href="teacher/teacher_detail">
-                                <span class="float-left">${total_subject} Teacher</span>
+                                <span class="float-left">${total_teacher} Teacher</span>
                                 <span class="float-right">
                                     <i class="fa fa-angle-right"></i>
                                 </span>
@@ -131,7 +131,7 @@
                                 <div class="mr-5">Total Student</div>
                             </div>
                             <a class="card-footer text-white clearfix small z-1" href="student/student_detail">
-                                <span class="float-left">${total_class} Student</span>
+                                <span class="float-left">${total_student} Student</span>
                                 <span class="float-right">
                                     <i class="fa fa-angle-right"></i>
                                 </span>
@@ -147,7 +147,7 @@
                                 <div class="mr-5">Report Attendence</div>
                             </div>
                             <a class="card-footer text-white clearfix small z-1" href="account_detail">
-                                <span class="float-left">${total_account} Account</span>
+                                <span class="float-left">${total_attendence} Report</span>
                                 <span class="float-right">
                                     <i class="fa fa-angle-right"></i>
                                 </span>
@@ -177,9 +177,6 @@
                             </tr>
                             <tr>
                                 <td><a href="schedule/add" style="color: black;">Schedule</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="attendence/report" style="color: black;">Attendence Report</a></td>
                             </tr>
                         </table>
                     </div>

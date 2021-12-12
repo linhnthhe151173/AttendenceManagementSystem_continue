@@ -33,22 +33,16 @@
             <div id="navb" class="navbar-collapse collapse hide">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="home_admin.jsp" style="color: white;"><span class="fas fa-user">Welcome: </span>${sessionScope.account.getDisplayName()}</a>
+                        <a class="nav-link" href="" style="color: white;"><span class="fas fa-user">Welcome: </span>${sessionScope.account.getDisplayName()}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" style="color: white;"><span class="fas fa-sign-in-alt"></span>| Logout</a>
+                        <a class="nav-link" href="logout" style="color: white;"><span class="fas fa-sign-in-alt"></span>| Logout</a>
                     </li>
                 </ul>
             </div>
         </nav>
 
         <div class="container">
-            <!-- Search form -->
-            <div style="display: flex;margin-top: 20px;">
-                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-                <input type="submit" style="background-color: #EF7F1B;
-                       border: none;" value="Search">
-            </div>
             <h4 style="text-align: center;
                 margin-top: 20px;
                 font-weight: bold;

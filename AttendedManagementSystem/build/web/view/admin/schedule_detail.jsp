@@ -27,7 +27,7 @@
     <body>
         <!-- header -->
         <nav class="navbar navbar-expand-md sticky-top" style="background-color: #EF7F1B;">
-            <a class="navbar-brand" href="../home" style="color: white;">Attendence Management</a>
+            <a class="navbar-brand" href="home" style="color: white;">Attendence Management</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb" aria-expanded="true">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -37,7 +37,7 @@
                         <a class="nav-link" href="" style="color: white;"><span class="fas fa-user">Welcome: </span>${sessionScope.account.getDisplayName()}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="" style="color: white;"><span class="fas fa-sign-in-alt"></span>| Logout</a>
+                        <a class="nav-link" href="logout" style="color: white;"><span class="fas fa-sign-in-alt"></span>| Logout</a>
                     </li>
                 </ul>
             </div>

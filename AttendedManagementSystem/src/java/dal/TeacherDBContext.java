@@ -220,4 +220,20 @@ public class TeacherDBContext extends DBContext {
             System.out.println(teacher);
         }
     }
+
+    public int countTeacher() {
+        int total_schedule = 0;
+        try {
+            String sql = "select count(*)\n"
+                    + "from Teacher";
+            stm = connection.prepareStatement(sql);
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                total_schedule = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SubjectDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return total_schedule;
+    }
 }
