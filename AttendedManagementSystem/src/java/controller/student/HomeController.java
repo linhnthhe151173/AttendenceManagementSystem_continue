@@ -1,9 +1,11 @@
 package controller.student;
 
 import dal.AttendenceDBContext;
+import dal.ScheduleDBContext;
 import dal.SemesterDBContext;
 import dal.StudentDBContext;
 import dal.SubjectDBContext;
+import dal.TeacherDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ import model.ClassMember;
 import model.Semester;
 import model.Student;
 import model.Subject;
+import model.Teacher;
 
 /**
  *
@@ -61,7 +64,11 @@ public class HomeController extends HttpServlet {
         ArrayList<Subject> list_subject = new ArrayList<>();
         ArrayList<Attendence> list_attendence = new AttendenceDBContext().getAttendenceOfStudentBySubjectID(s, subjectID);
         list_subject = new SubjectDBContext().getSubjectBySemester(semester);
+        
+        Teacher teacher = new TeacherDBContext().getTeacherIDByStudentIDAndSubjectID(s, subjectID);
+                
         request.setAttribute("semester", semester);
+        request.setAttribute("teacher", teacher);
         request.setAttribute("list_subject", list_subject);
         request.setAttribute("list_attendence", list_attendence);
         request.getRequestDispatcher("../view/student/home_student.jsp").forward(request, response);

@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Student;
 import model.Teacher;
 
 /**
@@ -235,5 +236,34 @@ public class TeacherDBContext extends DBContext {
             Logger.getLogger(SubjectDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return total_schedule;
+    }
+
+    public Teacher getTeacherIDByStudentIDAndSubjectID(Student s, int subjectID) {
+        try {
+            String sql = "select distinct Teacher.* from Attendence join Schedule\n"
+                    + "on Attendence.ScheduleID = Schedule.ScheduleID\n"
+                    + "join Teacher on Schedule.TeacherID = Teacher.TeacherID\n"
+                    + "where StudentID = ? and SubjectID = ?";
+            stm = connection.prepareStatement(sql);
+            stm.setString(1, s.getStudentID());
+            stm.setInt(2, subjectID);
+            rs = stm.executeQuery();
+
+            while (rs.next()) {
+                Teacher t1 = Teacher.builder().TeacherID(rs.getInt(1))
+                        .TeacherName(rs.getString(2))
+                        .TeacherImage(rs.getString(3))
+                        .TeacherGender(rs.getBoolean(4))
+                        .TeacherAddress(rs.getString(5))
+                        .TeacherEmail(rs.getString(6))
+                        .TeacherPhone(rs.getString(7))
+                        .TeacherDOB(rs.getDate(8)).build();
+
+                return t1;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TeacherDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }

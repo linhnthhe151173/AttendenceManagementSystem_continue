@@ -210,7 +210,7 @@ public class AttendenceDBContext extends DBContext {
         try {
             String sql = "select Attendence.* from Attendence join Schedule\n"
                     + "on Attendence.ScheduleID = Schedule.ScheduleID\n"
-                    + "where StudentID = ? and SubjectID = 6";
+                    + "where StudentID = ? and SubjectID = ?";
 
             stm = connection.prepareStatement(sql);
             stm.setString(1, student.getStudentID());

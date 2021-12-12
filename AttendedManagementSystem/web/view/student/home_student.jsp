@@ -81,7 +81,7 @@
                     if (list_attendence != null) {
                 %>
                 <div class="col-md-7"  style="border-left: 1px solid black;">
-                    <h6>Lecture: LinhNTH</h6>
+                    <h6>Lecture: ${teacher.getTeacherName()}</h6>
                     <table class="table table-hover">
                         <thead>
                         <th>STT</th>
@@ -104,9 +104,6 @@
                             <%
                                 }
                             %>
-                            <tr>
-                                <td colspan="6" style="text-align: center;"><h5>2 ABSENT ON 30 TOTAL</h5></td>
-                            </tr>
                         </tbody>
                     </table>
 

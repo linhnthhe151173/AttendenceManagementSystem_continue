@@ -26,7 +26,7 @@ public class EditController extends HttpServlet {
         c = new ClassDBContext().getOne(c);
         
         request.setAttribute("c", c);
-        request.getRequestDispatcher("../view/teacher/teacher_edit.jsp").forward(request, response);
+        request.getRequestDispatcher("../view/admin/class_edit.jsp").forward(request, response);
     }
 
  
