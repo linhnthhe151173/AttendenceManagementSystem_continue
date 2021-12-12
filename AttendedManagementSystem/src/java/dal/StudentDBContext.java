@@ -261,4 +261,38 @@ public class StudentDBContext extends DBContext {
         }
         return total_schedule;
     }
+
+    public Student getStudentByEmail(Student s) {
+        try {
+            String sql = "select * from Student\n"
+                    + "where StudentEmail = ?";
+
+            stm = connection.prepareStatement(sql);
+            stm.setString(1, s.getStudentEmail());
+            rs = stm.executeQuery();
+
+            while (rs.next()) {
+
+                Semester se = Semester.builder().SemesterID(rs.getInt(9)).build();
+                se = new SemesterDBContext().getOne(se);
+
+                Student s1 = Student.builder()
+                        .StudentID(rs.getString(1))
+                        .StudentName(rs.getString(2))
+                        .StudentImage(rs.getString(3))
+                        .StudentGender(rs.getBoolean(4))
+                        .StudentAddress(rs.getString(5))
+                        .StudentEmail(rs.getString(6))
+                        .StudentPhone(rs.getString(7))
+                        .StudentDOB(rs.getDate(8))
+                        .SemesterID(se)
+                        .build();
+
+                return s1;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }

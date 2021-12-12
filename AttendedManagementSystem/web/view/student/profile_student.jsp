@@ -18,14 +18,14 @@
     <body>
         <!-- header -->
         <nav class="navbar navbar-expand-md sticky-top" style="background-color: #EF7F1B;">
-            <a class="navbar-brand" href="home_student.jsp" style="color: white;">Attendence Management</a>
+            <a class="navbar-brand" href="home_student" style="color: white;">Attendence Management</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb" aria-expanded="true">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div id="navb" class="navbar-collapse collapse hide">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="profile_student.jsp" style="color: white;"><span class="fas fa-user">Welcome: </span>LinhNTHHE151173</a>
+                        <a class="nav-link" href="" style="color: white;"><span class="fas fa-user">Welcome: </span>LinhNTHHE151173</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../logout" style="color: white;"><span class="fas fa-sign-in-alt"></span>| Logout</a>

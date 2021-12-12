@@ -145,7 +145,7 @@ public class SubjectDBContext extends DBContext {
         try {
             ArrayList<Subject> list = new ArrayList<>();
             String sql = "select * from Subject\n"
-                    + "where SubjectCode like '%"+search+"%'";
+                    + "where SubjectCode like '%" + search + "%'";
             stm = connection.prepareStatement(sql);
             rs = stm.executeQuery();
             while (rs.next()) {
@@ -176,5 +176,36 @@ public class SubjectDBContext extends DBContext {
         for (Subject subject : list) {
             System.out.println(subject);
         }
+    }
+
+    public ArrayList<Subject> getSubjectBySemester(Semester semester) {
+        try {
+            ArrayList<Subject> list = new ArrayList<>();
+            String sql = "select * from Subject inner join Semester\n"
+                    + "on Subject.SemesterID = Semester.SemesterID\n"
+                    + "where Semester.SemesterID = ?";
+            stm = connection.prepareStatement(sql);
+            stm.setInt(1, semester.getSemesterID());
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                Semester se = Semester.builder()
+                        .SemesterID(rs.getInt(4)).build();
+                se = new SemesterDBContext().getOne(se);
+
+                Subject s = Subject.builder()
+                        .SubjectID(rs.getInt(1))
+                        .SubjectCode(rs.getString(2))
+                        .TotalSlot(rs.getInt(3))
+                        .SemesterID(se)
+                        .SubjectName(rs.getString(5))
+                        .build();
+
+                list.add(s);
+            }
+            return list;
+        } catch (SQLException ex) {
+            Logger.getLogger(SubjectDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }

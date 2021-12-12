@@ -204,4 +204,38 @@ public class AttendenceDBContext extends DBContext {
         }
         return total_schedule;
     }
+
+    public ArrayList<Attendence> getAttendenceOfStudentBySubjectID(Student student, int subjectID) {
+        ArrayList<Attendence> attendeds = new ArrayList<>();
+        try {
+            String sql = "select Attendence.* from Attendence join Schedule\n"
+                    + "on Attendence.ScheduleID = Schedule.ScheduleID\n"
+                    + "where StudentID = ? and SubjectID = 6";
+
+            stm = connection.prepareStatement(sql);
+            stm.setString(1, student.getStudentID());
+            stm.setInt(2, subjectID);
+            rs = stm.executeQuery();
+
+            while (rs.next()) {
+                Student s = Student.builder().StudentID(rs.getString(2)).build();
+                s = new StudentDBContext().getOne(s);
+
+                Schedule sc = new ScheduleDBContext().getScheduleByID(rs.getInt(3));
+
+                Attendence a = Attendence.builder()
+                        .AttendenceID(rs.getInt(1))
+                        .StudentID(s)
+                        .ScheduleID(sc)
+                        .Present(rs.getBoolean(4))
+                        .AttendenceDate(rs.getDate(5)).build();
+
+                attendeds.add(a);
+            }
+            return attendeds;
+        } catch (SQLException ex) {
+            Logger.getLogger(AttendenceDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }

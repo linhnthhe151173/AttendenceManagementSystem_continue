@@ -4,6 +4,10 @@
     Author     : Linh
 --%>
 
+<%@page import="model.Attendence"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.ArrayList"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,6 +18,9 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <title>home_student</title>
+        <%
+            ArrayList<Attendence> list_attendence = (ArrayList<Attendence>) request.getAttribute("list_attendence");
+        %>
     </head>
     <body>
         <!-- header -->
@@ -25,7 +32,7 @@
             <div id="navb" class="navbar-collapse collapse hide">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="profile_student.jsp" style="color: white;"><span class="fas fa-user">Welcome: </span>${sessionScope.account.getDisplayName()}</a>
+                        <a class="nav-link" href="../student/profile_student" style="color: white;"><span class="fas fa-user">Welcome: </span>${sessionScope.account.getDisplayName()}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../logout" style="color: white;"><span class="fas fa-sign-in-alt"></span>| Logout</a>
@@ -35,25 +42,7 @@
         </nav>
 
         <div class="container">
-            <div style="margin-top: 20px;">
-                <h5>Your Semester: 5</h5>
-                <h5 style="color: #EF7F1B;">Check your attended schedule with:</h5>
-                <div>
-                    <ul>
-                        <li>
-                            <a href="attended_schedule_detail.jsp" style="color: black;">PRJ(Java Web Application)</a>
-                        </li>
-                        <li>
-                            <a href="attended_schedule_detail.jsp" style="color: black;">PRJ(Java Web Application)</a>
-                        </li>
-                        <li>
-                            <a href="attended_schedule_detail.jsp" style="color: black;">PRJ(Java Web Application)</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <hr>
-            <h5 style="color: #EF7F1B;">Or check another your semester:</h5>
+            <h5 style="color: #EF7F1B;margin-top: 20px;">Check your attended schedule with:</h5>
             <div class="row">
                 <div class="col-md-2">
                     <table class="table table-hover">
@@ -62,19 +51,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Semester 1</td>
-                            </tr>
-                            <tr>
-                                <td>Semester 2</td>
-                            </tr>
-                            <tr>
-                                <td>Semester 3</td>
-                            </tr>
-                            <tr>
-                                <td>Semester 4</td>
-                            </tr>
-                            <tr>
-                                <td>Semester 5</td>
+                                <td>${semester.getSemesterName()}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -89,21 +66,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td><a>PRJ301(SE1511)</a></td>
+                            <c:forEach items="${list_subject}" var="subject" varStatus="status">
+                                <tr>
+                                    <th scope="row">${status.count}</th>
+                            <form action="home_student" method="POST">
+                                <td>${subject.getSubjectCode()} <input type="hidden" name="subjectID" value="${subject.getSubjectID()}" /><input type="submit" value="Check" /></td>
+                            </form>
                             </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td><a>PRJ301(SE1511)</a></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td><a>PRJ301(SE1511)</a></td>
-                            </tr>
+                        </c:forEach>                         
                         </tbody>
                     </table>
                 </div>
+                <%
+                    if (list_attendence != null) {
+                %>
                 <div class="col-md-7"  style="border-left: 1px solid black;">
                     <h6>Lecture: LinhNTH</h6>
                     <table class="table table-hover">
@@ -111,58 +87,42 @@
                         <th>STT</th>
                         <th>Date</th>
                         <th>Time Slot</th>
-                        <th>Room</th>
                         <th>Class Name</th>
                         <th>Attendance Status</th>
                         </thead>
                         <tbody>
+                            <%
+                                for (int i = 0; i < list_attendence.size(); i++) {
+                            %>
                             <tr>
-                                <td>1</td>
-                                <td>02-08-2021</td>
-                                <td>7:30-9:30</td>
-                                <td>BE157</td>
-                                <td>SE1511</td>
-                                <td style="color: green;">Present</td>
+                                <td>${sta.count} <%=i + 1%></td>
+                                <td><%=list_attendence.get(i).getAttendenceDate()%></td>
+                                <td><%=list_attendence.get(i).getScheduleID().getTimeSlotID().getTimeSlotStart()%> - <%=list_attendence.get(i).getScheduleID().getTimeSlotID().getTimeSlotEnd()%></td>
+                                <td><%=list_attendence.get(i).getScheduleID().getClassID().getClassName()%></td>
+                                <td><%=list_attendence.get(i).isPresent() ? "Present" : "Absent"%></td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>02-08-2021</td>
-                                <td>7:30-9:30</td>
-                                <td>BE157</td>
-                                <td>SE1511</td>
-                                <td style="color: green;">Present</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>02-08-2021</td>
-                                <td>7:30-9:30</td>
-                                <td>BE157</td>
-                                <td>SE1511</td>
-                                <td style="color: green;">Present</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>02-08-2021</td>
-                                <td>7:30-9:30</td>
-                                <td>BE157</td>
-                                <td>SE1511</td>
-                                <td style="color: green;">Present</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>02-08-2021</td>
-                                <td>7:30-9:30</td>
-                                <td>BE157</td>
-                                <td>SE1511</td>
-                                <td style="color: green;">Present</td>
-                            </tr>
+                            <%
+                                }
+                            %>
                             <tr>
                                 <td colspan="6" style="text-align: center;"><h5>2 ABSENT ON 30 TOTAL</h5></td>
                             </tr>
                         </tbody>
                     </table>
-                    
+
                 </div>
+                <%
+                } else {
+                %>
+                <div class="col-md-7"  style="border-left: 1px solid black;">
+                    <div class="alert alert-warning" role="alert" cla>
+                        No attendence
+                    </div>
+                </div>
+
+                <%
+                    }
+                %>
             </div>
         </div>
     </body>
