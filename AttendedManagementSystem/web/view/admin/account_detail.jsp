@@ -66,7 +66,7 @@
                         %>
                     <td><%=i + 1%></td>
                     <td><%=list_account_admin.get(i).getUsername()%></td>
-                    <td><%=list_account_admin.get(i).getPassword()%></td>
+                    <td>***</td>
                     <td><%=list_account_admin.get(i).getDisplayName()%></td>
 
                     <%
@@ -95,7 +95,7 @@
                     <tr>
                         <td><%=j + 1%></td><br>
                 <td><%=list_account_teacher.get(j).getUsername()%></td>
-                <td><%=list_account_teacher.get(j).getPassword()%></td>
+                <td>***</td>
                 <td><%=list_account_teacher.get(j).getDisplayName()%></td>
                 </tr>
                 <%
@@ -124,7 +124,7 @@
                     <tr>
                         <td><%=k + 1%></td><br>
                 <td><%=list_account_student.get(k).getUsername()%></td>
-                <td><%=list_account_student.get(k).getPassword()%></td>
+                <td>***</td>
                 <td><%=list_account_student.get(k).getDisplayName()%></td>
                 </tr>
                 <%

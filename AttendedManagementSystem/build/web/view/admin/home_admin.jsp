@@ -146,7 +146,7 @@
                                 </div>
                                 <div class="mr-5">Report Attendence</div>
                             </div>
-                            <a class="card-footer text-white clearfix small z-1" href="account_detail">
+                            <a class="card-footer text-white clearfix small z-1" href="attendence/attendence_detail_admin">
                                 <span class="float-left">${total_attendence} Report</span>
                                 <span class="float-right">
                                     <i class="fa fa-angle-right"></i>
