@@ -18,14 +18,14 @@
     <body>
         <!-- header -->
         <nav class="navbar navbar-expand-md sticky-top" style="background-color: #EF7F1B;">
-            <a class="navbar-brand" href="home_student" style="color: white;">Attendence Management</a>
+            <a class="navbar-brand" href="home_Student" style="color: white;">Attendence Management</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb" aria-expanded="true">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div id="navb" class="navbar-collapse collapse hide">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="" style="color: white;"><span class="fas fa-user">Welcome: </span>LinhNTHHE151173</a>
+                        <a class="nav-link" href="" style="color: white;"><span class="fas fa-user">Welcome: </span>${sessionScope.account.getDisplayName()}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../logout" style="color: white;"><span class="fas fa-sign-in-alt"></span>| Logout</a>
@@ -38,32 +38,29 @@
         <div class="container rounded bg-white mt-5">
             <div class="row">
                 <div class="col-md-4 border-right">
-                    <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5 " src="../../img/avatar.png" width="90"><span class="font-weight-bold">Hai Linh</span><span class="text-black-50">123@gmai.com</span><span>Hai Duong</span></div>
+                    <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5 " src="../img/${s.getStudentImage()}" width="90"><span class="font-weight-bold">${s.getStudentName()}</span><span class="text-black-50">${s.getStudentEmail()}</span><span>${s.getStudentAddress()}</span></div>
                 </div>
                 <div class="col-md-8">
                     <div class="p-3 py-5">
                         <div class="d-flex justify-content-between align-items-center mb-3">
-                            <div class="d-flex flex-row align-items-center back"><i class="fa fa-long-arrow-left mr-1 mb-1"></i>
-                                <h6><a href="home_student.jsp" style="color: #EF7F1B;">Back to home</a></h6>
-                            </div>
                         </div>
                         <div>
                             <table class="table table-bordered">
                                 <tr>
                                     <td>Student Code</td>
-                                    <td>HE151173</td>
+                                    <td>${s.getStudentID()}</td>
                                 </tr>
                                 <tr>
                                     <td>Date Of Birth</td>
-                                    <td>HE151173</td>
+                                    <td>${s.getStudentDOB()}</td>
                                 </tr>
                                 <tr>
                                     <td>Gender</td>
-                                    <td>HE151173</td>
+                                    <td>${s.isStudentGender() ? "Male" : "Female"}</td>
                                 </tr>
                                 <tr>
                                     <td>Phone Number</td>
-                                    <td>HE151173</td>
+                                    <td>${s.getStudentPhone()}</td>
                                 </tr>
                             </table>
                         </div>
