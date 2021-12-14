@@ -48,11 +48,11 @@
                             </div>
                         </form>
 
-                        <div class="container" style="background-color:#f1f1f1;display: flex;">
+                        <!--<div class="container" style="background-color:#f1f1f1;display: flex;">
                             <div>
                                 <span class="psw">Forgot <a href="#">password?</a></span>
                             </div>
-                        </div>
+                        </div>-->
                     </form>
                 </div>
             </div>

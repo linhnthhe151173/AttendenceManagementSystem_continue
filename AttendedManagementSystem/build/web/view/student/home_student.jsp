@@ -99,7 +99,7 @@
                                 <td><%=list_attendence.get(i).getAttendenceDate()%></td>
                                 <td><%=list_attendence.get(i).getScheduleID().getTimeSlotID().getTimeSlotStart()%> - <%=list_attendence.get(i).getScheduleID().getTimeSlotID().getTimeSlotEnd()%></td>
                                 <td><%=list_attendence.get(i).getScheduleID().getClassID().getClassName()%></td>
-                                <td><%=list_attendence.get(i).isPresent() ? "Present" : "Absent"%></td>
+                                <td><%=list_attendence.get(i).isPresent() ? "<p style=\"color:green;\">Present</p>" : "<p style=\"color:red;\">Absent</p>"%></td>
                             </tr>
                             <%
                                 }

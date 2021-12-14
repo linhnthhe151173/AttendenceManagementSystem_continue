@@ -2,13 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Linh/Desktop/AttendenceManagementSystem_continue/AttendedManagementSystem/src/java/controller/student/HomeController.java</file>
-            <file>file:/C:/Users/Linh/Desktop/AttendenceManagementSystem_continue/AttendedManagementSystem/web/view/student/home_student.jsp</file>
-            <file>file:/C:/Users/Linh/Desktop/AttendenceManagementSystem_continue/AttendedManagementSystem/src/java/dal/SemesterDBContext.java</file>
-            <file>file:/C:/Users/Linh/Desktop/AttendenceManagementSystem_continue/AttendedManagementSystem/src/java/dal/StudentDBContext.java</file>
-            <file>file:/C:/Users/Linh/Desktop/AttendenceManagementSystem_continue/AttendedManagementSystem/src/java/controller/authentication/LoginController.java</file>
-            <file>file:/C:/Users/Linh/Desktop/AttendenceManagementSystem_continue/AttendedManagementSystem/web/view/admin/home_admin.jsp</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

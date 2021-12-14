@@ -25,7 +25,9 @@ import model.Account;
 "AddTeacherController", "TeacherDetailController", "AddScheduleController", "EditSubjectController", 
 "EditStudentController", "EditScheduleController", "RemoveSubjectController", "RemoveClassController", "RemoveTeacherController",
 "RemoveStudentController", "RemoveScheduleController", "EditAttendenceController", "AttendenceDetailController",
-"ProfileController", "AccountDetailController"}, urlPatterns = {"/teacher/other_schedule","/class/add", "/class/edit", "/teacher/edit"})
+"ProfileController", "AccountDetailController", "CDetailController", "EditTeacherController",
+"HomeController", "ScheduleController", "SubjectDetailController", "LogoutController"}, urlPatterns = {"/teacher/other_schedule","/class/add", "/class/edit", 
+"/teacher/edit", "/attendence/attendence_detail_admin", "/student/home_student", "/student/profile_student"})
 public class SecurityFilter implements Filter {
 
     @Override
@@ -36,8 +38,9 @@ public class SecurityFilter implements Filter {
         HttpServletResponse res = (HttpServletResponse) response;
         
         Account account = (Account) req.getSession().getAttribute("account");
+        String contextPath = req.getContextPath();
         if(account == null){
-            res.sendRedirect("../login");
+            res.sendRedirect(contextPath +"/login");
         }else {
             chain.doFilter(request, response);
         }

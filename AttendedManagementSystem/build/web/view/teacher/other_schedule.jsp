@@ -74,11 +74,11 @@
                                             <c:choose>
                                                 <c:when test="${sa.getScheduleDate() < date }">
                                                     <td><a href="../attendence/attendence_detail?scheduleID=${sa.getScheduleID()}">${sa.getClassID().getClassName()}</a></td>
-                                                </c:when>
-                                                <c:otherwise>
+                                                    </c:when>
+                                                    <c:otherwise>
                                                     <td><a href="../class_model/class_detail?ClassID=${sa.getClassID().getClassID()}">${sa.getClassID().getClassName()}</a></td>
-                                                </c:otherwise>
-                                            </c:choose>
+                                                    </c:otherwise>
+                                                </c:choose>
                                             <td>${sa.getTimeSlotID().getTimeSlotStart()} - ${sa.getTimeSlotID().getTimeSlotEnd()}</td>
                                             <td>${sa.getScheduleDate()}</td>
                                             <c:choose>
@@ -132,8 +132,15 @@
                                                             <th scope="row">${status.count}</th>
                                                             <td>${s.getSubjectID().getSubjectCode()}</td>
                                                             <td>${s.getSubjectID().getSubjectName()}</td>
-                                                            
-                                                            <td><a href="../class_model/class_detail?ClassID=${s.getClassID().getClassID()}">${s.getClassID().getClassName()}</a></td>
+                                                            <c:choose>
+                                                                <c:when test="${s.getScheduleDate() < date }">
+                                                                    <td><a href="../attendence/attendence_detail?scheduleID=${s.getScheduleID()}">${s.getClassID().getClassName()}</a></td>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                    <td><a href="../class_model/class_detail?ClassID=${s.getClassID().getClassID()}">${s.getClassID().getClassName()}</a></td>
+                                                                    </c:otherwise>
+                                                                </c:choose>
+
                                                             <td>${s.getTimeSlotID().getTimeSlotStart()} - ${s.getTimeSlotID().getTimeSlotEnd()}</td>
                                                             <c:choose>
                                                                 <c:when test="${s.getScheduleDate() < date}">
